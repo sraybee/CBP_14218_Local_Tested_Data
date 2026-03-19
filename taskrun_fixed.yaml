@@ -1,0 +1,110 @@
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  annotations:
+    cloudbees.io/trigger-id: test-trigger-fixed
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"tekton.dev/v1","kind":"TaskRun","metadata":{"annotations":{"cloudbees.io/trigger-id":"test-trigger-fixed"},"labels":{"cloudbees.io/component-id":"test-component","cloudbees.io/job":"test-job-fixed","cloudbees.io/organization":"test-org","cloudbees.io/pipeline-segment":"test-workflow-fixed","cloudbees.io/run-attempt":"1","cloudbees.io/run-id":"test-run-456","cloudbees.io/run-number":"1"},"name":"test-fixed-controller","namespace":"default"},"spec":{"taskSpec":{"steps":[{"image":"alpine:3.17","name":"hello","script":"#!/bin/sh\necho \"Testing FIXED controller...\"\nsleep 5\necho \"Step completed successfully!\"\n"}]}}}
+    pipeline.tekton.dev/release: 9db88e0
+  creationTimestamp: "2026-03-19T22:11:03Z"
+  finalizers:
+  - taskrun.cloudbees.com/metrics-finalizer
+  - taskrun.cloudbees.com/finalizer
+  generation: 1
+  labels:
+    app.kubernetes.io/managed-by: tekton-pipelines
+    cloudbees.io/component-id: test-component
+    cloudbees.io/job: test-job-fixed
+    cloudbees.io/organization: test-org
+    cloudbees.io/pipeline-segment: test-workflow-fixed
+    cloudbees.io/run-attempt: "1"
+    cloudbees.io/run-id: test-run-456
+    cloudbees.io/run-number: "1"
+  name: test-fixed-controller
+  namespace: default
+  resourceVersion: "13338"
+  uid: e964d1b7-7370-4466-bb08-73827de485c3
+spec:
+  serviceAccountName: default
+  taskSpec:
+    steps:
+    - computeResources: {}
+      image: alpine:3.17
+      name: hello
+      script: |
+        #!/bin/sh
+        echo "Testing FIXED controller..."
+        sleep 5
+        echo "Step completed successfully!"
+  timeout: 1h0m0s
+status:
+  artifacts: {}
+  completionTime: "2026-03-19T22:11:12Z"
+  conditions:
+  - lastTransitionTime: "2026-03-19T22:11:12Z"
+    message: '{"hello":{"start":"2026-03-19T22:11:03Z","end":"2026-03-19T22:11:11Z"}}'
+    status: "True"
+    type: ReportedStepsStatus
+  - lastTransitionTime: "2026-03-19T22:11:12Z"
+    status: "True"
+    type: ReportedTaskMetricsEnd
+  - lastTransitionTime: "2026-03-19T22:11:03Z"
+    status: "True"
+    type: ReportedTaskPending
+  - lastTransitionTime: "2026-03-19T22:11:03Z"
+    status: "True"
+    type: ReportedTaskPending
+  - lastTransitionTime: "2026-03-19T22:11:06Z"
+    status: "True"
+    type: ReportedTaskStart
+  - lastTransitionTime: "2026-03-19T22:11:12Z"
+    message: All Steps have completed executing
+    reason: Succeeded
+    status: "True"
+    type: Succeeded
+  - lastTransitionTime: "2026-03-19T22:11:03Z"
+    message: "2026-03-19T22:11:03Z"
+    status: "True"
+    type: TaskActualStartTime
+  - lastTransitionTime: "2026-03-19T22:11:03Z"
+    message: "0"
+    status: "True"
+    type: TaskBuildMinutes
+  - lastTransitionTime: "2026-03-19T22:11:12Z"
+    status: "True"
+    type: ReportedTaskEnd
+  podName: test-fixed-controller-pod
+  provenance:
+    featureFlags:
+      awaitSidecarReadiness: true
+      coschedule: workspaces
+      enableAPIFields: alpha
+      enableProvenanceInStatus: true
+      enforceNonfalsifiability: none
+      maxResultSize: 4096
+      resultExtractionMethod: termination-message
+      runningInEnvWithInjectedSidecars: true
+      verificationNoMatchPolicy: ignore
+  startTime: "2026-03-19T22:11:03Z"
+  steps:
+  - container: step-hello
+    imageID: docker.io/library/alpine@sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989
+    name: hello
+    provenance: {}
+    terminated:
+      containerID: containerd://d52171a8d64bfe4b674dc04fa39dde8362fd856cd275e6a3541242a15f62ddb6
+      exitCode: 0
+      finishedAt: "2026-03-19T22:11:11Z"
+      reason: Completed
+      startedAt: "2026-03-19T22:11:06Z"
+    terminationReason: Completed
+  taskSpec:
+    steps:
+    - computeResources: {}
+      image: alpine:3.17
+      name: hello
+      script: |
+        #!/bin/sh
+        echo "Testing FIXED controller..."
+        sleep 5
+        echo "Step completed successfully!"

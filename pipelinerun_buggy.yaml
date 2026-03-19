@@ -1,0 +1,85 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    cloudbees.io/start-time: "2026-03-19T22:45:23Z"
+    cloudbees.io/trigger-id: test-trigger-pr-buggy
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"tekton.dev/v1","kind":"PipelineRun","metadata":{"annotations":{"cloudbees.io/trigger-id":"test-trigger-pr-buggy"},"labels":{"cloudbees.io/component-id":"test-component","cloudbees.io/job":"test-job-pr-buggy","cloudbees.io/organization":"test-org","cloudbees.io/pipeline-segment":"test-workflow-pr-buggy","cloudbees.io/run-attempt":"1","cloudbees.io/run-id":"test-run-pr-buggy","cloudbees.io/run-number":"1"},"name":"test-buggy-pipelinerun","namespace":"default"},"spec":{"pipelineSpec":{"tasks":[{"name":"hello-task","taskSpec":{"steps":[{"image":"alpine:3.17","name":"hello","script":"#!/bin/sh\necho \"Testing BUGGY controller with PipelineRun...\"\nsleep 3\necho \"Task completed successfully!\"\n"}]}}]}}}
+  creationTimestamp: "2026-03-19T22:45:23Z"
+  finalizers:
+  - pipelinerun.cloudbees.io/finalizer
+  generation: 1
+  labels:
+    cloudbees.io/component-id: test-component
+    cloudbees.io/job: test-job-pr-buggy
+    cloudbees.io/organization: test-org
+    cloudbees.io/pipeline-segment: test-workflow-pr-buggy
+    cloudbees.io/run-attempt: "1"
+    cloudbees.io/run-id: test-run-pr-buggy
+    cloudbees.io/run-number: "1"
+    tekton.dev/pipeline: test-buggy-pipelinerun
+  name: test-buggy-pipelinerun
+  namespace: default
+  resourceVersion: "18349"
+  uid: 478aca52-0860-471d-9d0a-450a926ee096
+spec:
+  pipelineSpec:
+    tasks:
+    - name: hello-task
+      taskSpec:
+        metadata: {}
+        spec: null
+        steps:
+        - computeResources: {}
+          image: alpine:3.17
+          name: hello
+          script: |
+            #!/bin/sh
+            echo "Testing BUGGY controller with PipelineRun..."
+            sleep 3
+            echo "Task completed successfully!"
+  taskRunTemplate:
+    serviceAccountName: default
+  timeouts:
+    pipeline: 1h0m0s
+status:
+  childReferences:
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: test-buggy-pipelinerun-hello-task
+    pipelineTaskName: hello-task
+  completionTime: "2026-03-19T22:45:30Z"
+  conditions:
+  - lastTransitionTime: "2026-03-19T22:45:30Z"
+    message: 'Tasks Completed: 1 (Failed: 0, Cancelled 0), Skipped: 0'
+    reason: Succeeded
+    status: "True"
+    type: Succeeded
+  pipelineSpec:
+    tasks:
+    - name: hello-task
+      taskSpec:
+        metadata: {}
+        spec: null
+        steps:
+        - computeResources: {}
+          image: alpine:3.17
+          name: hello
+          script: |
+            #!/bin/sh
+            echo "Testing BUGGY controller with PipelineRun..."
+            sleep 3
+            echo "Task completed successfully!"
+  provenance:
+    featureFlags:
+      awaitSidecarReadiness: true
+      coschedule: workspaces
+      enableAPIFields: alpha
+      enableProvenanceInStatus: true
+      enforceNonfalsifiability: none
+      maxResultSize: 4096
+      resultExtractionMethod: termination-message
+      runningInEnvWithInjectedSidecars: true
+      verificationNoMatchPolicy: ignore
+  startTime: "2026-03-19T22:45:23Z"

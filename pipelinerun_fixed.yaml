@@ -1,0 +1,91 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  annotations:
+    cloudbees.io/start-time: "2026-03-19T22:46:26Z"
+    cloudbees.io/trigger-id: test-trigger-pr-fixed
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"tekton.dev/v1","kind":"PipelineRun","metadata":{"annotations":{"cloudbees.io/trigger-id":"test-trigger-pr-fixed"},"labels":{"cloudbees.io/component-id":"test-component","cloudbees.io/job":"test-job-pr-fixed","cloudbees.io/organization":"test-org","cloudbees.io/pipeline-segment":"test-workflow-pr-fixed","cloudbees.io/run-attempt":"1","cloudbees.io/run-id":"test-run-pr-fixed","cloudbees.io/run-number":"1"},"name":"test-fixed-pipelinerun","namespace":"default"},"spec":{"pipelineSpec":{"tasks":[{"name":"hello-task","taskSpec":{"steps":[{"image":"alpine:3.17","name":"hello","script":"#!/bin/sh\necho \"Testing FIXED controller with PipelineRun...\"\nsleep 3\necho \"Task completed successfully!\"\n"}]}}]}}}
+  creationTimestamp: "2026-03-19T22:46:26Z"
+  finalizers:
+  - pipelinerun.cloudbees.io/finalizer
+  generation: 1
+  labels:
+    cloudbees.io/component-id: test-component
+    cloudbees.io/job: test-job-pr-fixed
+    cloudbees.io/organization: test-org
+    cloudbees.io/pipeline-segment: test-workflow-pr-fixed
+    cloudbees.io/run-attempt: "1"
+    cloudbees.io/run-id: test-run-pr-fixed
+    cloudbees.io/run-number: "1"
+    tekton.dev/pipeline: test-fixed-pipelinerun
+  name: test-fixed-pipelinerun
+  namespace: default
+  resourceVersion: "18616"
+  uid: 74d20310-01d5-4e34-a73a-6ac713063086
+spec:
+  pipelineSpec:
+    tasks:
+    - name: hello-task
+      taskSpec:
+        metadata: {}
+        spec: null
+        steps:
+        - computeResources: {}
+          image: alpine:3.17
+          name: hello
+          script: |
+            #!/bin/sh
+            echo "Testing FIXED controller with PipelineRun..."
+            sleep 3
+            echo "Task completed successfully!"
+  taskRunTemplate:
+    serviceAccountName: default
+  timeouts:
+    pipeline: 1h0m0s
+status:
+  childReferences:
+  - apiVersion: tekton.dev/v1
+    kind: TaskRun
+    name: test-fixed-pipelinerun-hello-task
+    pipelineTaskName: hello-task
+  completionTime: "2026-03-19T22:46:35Z"
+  conditions:
+  - lastTransitionTime: "2026-03-19T22:46:30Z"
+    status: "True"
+    type: ReportedPipelineStart
+  - lastTransitionTime: "2026-03-19T22:46:35Z"
+    message: 'Tasks Completed: 1 (Failed: 0, Cancelled 0), Skipped: 0'
+    reason: Succeeded
+    status: "True"
+    type: Succeeded
+  - lastTransitionTime: "2026-03-19T22:46:35Z"
+    status: "True"
+    type: ReportedPipelineEnd
+  pipelineSpec:
+    tasks:
+    - name: hello-task
+      taskSpec:
+        metadata: {}
+        spec: null
+        steps:
+        - computeResources: {}
+          image: alpine:3.17
+          name: hello
+          script: |
+            #!/bin/sh
+            echo "Testing FIXED controller with PipelineRun..."
+            sleep 3
+            echo "Task completed successfully!"
+  provenance:
+    featureFlags:
+      awaitSidecarReadiness: true
+      coschedule: workspaces
+      enableAPIFields: alpha
+      enableProvenanceInStatus: true
+      enforceNonfalsifiability: none
+      maxResultSize: 4096
+      resultExtractionMethod: termination-message
+      runningInEnvWithInjectedSidecars: true
+      verificationNoMatchPolicy: ignore
+  startTime: "2026-03-19T22:46:26Z"
